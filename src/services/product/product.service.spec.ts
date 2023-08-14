@@ -2,6 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { ProductsService } from "./product.service";
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Product } from "src/app/models";
+import { generateManyProducts } from "../../app/models/product.mock";
 import { environment } from "src/environments/environment";
 
 fdescribe('ProductsService', () => {
@@ -24,19 +25,7 @@ fdescribe('ProductsService', () => {
     describe('test getAll method', () => {
         it('should return a product list', (doneFn) => {
             // data
-            const mockProducts: Product[] = [
-                {
-                    id: '1',
-                    title: 'Product 1',
-                    price: 100,
-                    description: 'Product 1 description',
-                    category: {
-                        id: 1,
-                        name: 'Category 1'
-                    },
-                    images: ['image1', 'image2']
-                }
-            ]
+            const mockProducts: Product[] = generateManyProducts();
 
             // action
             productsService.getAllSimple().subscribe((products) => {
